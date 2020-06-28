@@ -1,5 +1,5 @@
 .container {
-  max-width: 400px;
+  max-width: 500px;
   margin: 0 auto;
   padding: 10px;
 
@@ -15,8 +15,32 @@
   }
 
   .btn_active {
-    border: 1px solid #1BBC9B;
+    border: 1px solid #F1654C;
     color: #111;
     font-weight: 600;
+    background-color: #ccc
+  }
+}
+
+.countdown {
+  background-color: rgba(200, 200, 200, 0.2);
+  padding: 20px;
+}
+
+.speedButtonsContainer {
+  margin-top: 10px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 50px;
+
+  span {
+    padding: 15px;
+    background-color: #F1654C;
+    color: #fff;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+    font-size: 28px;
   }
 }

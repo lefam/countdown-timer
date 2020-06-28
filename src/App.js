@@ -3,6 +3,8 @@ import UserInput from './components/UserInput';
 import Timer from './components/Timer';
 import HLayout from './components/HLayout';
 import styles from './App.module.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPauseCircle, faPlayCircle } from '@fortawesome/free-solid-svg-icons';
 
 function App() {
   const [startValueInMins, setStartValueInMins] = useState(null);
@@ -13,8 +15,6 @@ function App() {
   useEffect(() => {
     if (!startValueInMins || paused) return;
 
-    console.log('starting timer...');
-
     const timer = setInterval(() => {
       if (!paused) {
         setCurrentValue((prev) => Math.max(prev - 1, 0));
@@ -22,7 +22,6 @@ function App() {
     }, speed);
 
     return () => {
-      console.log('ending timer');
       clearInterval(timer);
     };
   }, [startValueInMins, paused, speed]);
@@ -33,7 +32,6 @@ function App() {
   };
 
   const handleTimerToggle = () => {
-    console.log('timer toggle', paused);
     setPaused((prev) => !prev);
   };
 
@@ -55,32 +53,50 @@ function App() {
 
   return (
     <div className={styles.container}>
-      <UserInput onStart={handleStart} />
-      <HLayout>
-        <div className="p10">{status}</div>
-      </HLayout>
-      <HLayout>
-        <Timer value={Math.ceil(currentValue)} onToggle={handleTimerToggle} />
-        {currentValue > 0 && (
-          <button className="align-self-center" onClick={handleTimerToggle}>
-            {paused ? 'Play' : 'Pause'}
+      <header className={styles.header}>
+        <span>Countdown Timer</span>
+      </header>
+      <div className={styles.countdown}>
+        <UserInput onStart={handleStart} />
+        <HLayout>
+          <div className="p10">{status}</div>
+        </HLayout>
+        <HLayout>
+          <Timer value={Math.ceil(currentValue)} onToggle={handleTimerToggle} />
+          {currentValue > 0 && (
+            <button
+              className="align-self-center p10"
+              onClick={handleTimerToggle}
+            >
+              {paused ? (
+                <FontAwesomeIcon icon={faPlayCircle} size="2x" />
+              ) : (
+                <FontAwesomeIcon icon={faPauseCircle} size="2x" />
+              )}
+            </button>
+          )}
+        </HLayout>
+        <HLayout className={styles.speedButtonsContainer}>
+          <button
+            className={speedButtonClass(1000)}
+            onClick={() => setSpeed(1000)}
+          >
+            1X
           </button>
-        )}
-      </HLayout>
-      <HLayout>
-        <button
-          className={speedButtonClass(1000)}
-          onClick={() => setSpeed(1000)}
-        >
-          1X
-        </button>
-        <button className={speedButtonClass(750)} onClick={() => setSpeed(750)}>
-          1.5X
-        </button>
-        <button className={speedButtonClass(500)} onClick={() => setSpeed(500)}>
-          2X
-        </button>
-      </HLayout>
+          <button
+            className={speedButtonClass(750)}
+            onClick={() => setSpeed(750)}
+          >
+            1.5X
+          </button>
+          <button
+            className={speedButtonClass(500)}
+            onClick={() => setSpeed(500)}
+          >
+            2X
+          </button>
+        </HLayout>
+      </div>
     </div>
   );
 }

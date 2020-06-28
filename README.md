@@ -7,7 +7,7 @@ This is a React app bootstraped using CRA (create-react-app).
 
 ## Demo
 
-Please follow this link https://5ef803afe19d75b68961afdd--leonel-countdown.netlify.app to see the app in action.
+Please follow this link https://leonel-countdown.netlify.app/ to see the app in action.
 
 ## Getting started
 
