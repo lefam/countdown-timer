@@ -1,0 +1,22 @@
+.container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 10px;
+
+  .btn_speed {
+    outline: none;
+    color: #555;
+    padding: 10px;
+    font-size: 18px;
+    margin-right: 10px;
+    width: 64px;
+    border: none;
+
+  }
+
+  .btn_active {
+    border: 1px solid #1BBC9B;
+    color: #111;
+    font-weight: 600;
+  }
+}
